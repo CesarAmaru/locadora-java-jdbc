@@ -28,9 +28,9 @@ locadora-veiculos-java/
 │   └── br/
 │       └── treino/
 │           ├── DAO/      # Camada de Acesso a Dados
-│           │   ├── entities/        # Interfaces dos DAOs
-│           │   │   ├── IClienteDAO.java
-│           │   │   └── IVeiculoDAO.java
+│           │   ├── entities/        
+│           │   │   ├── InterfaceDAO.java    # Interfaces dos DAOs
+│           │   │ 
 │           │   ├── ClienteDAO.java  # Implementação JDBC do Cliente
 │           │   ├── DAO.java         # Conexão e métodos utilitários
 │           │   └── VeiculoDAO.java  # Implementação JDBC de Veículos
@@ -63,7 +63,7 @@ Crie um arquivo chamado **`config.properties`** na **raiz do projeto** (no mesmo
 Insira o seguinte conteúdo com as suas configurações locais do MySQL:
 
 ```properties
-db.url=jdbc:mysql://caminho/locadora_db
+db.url=jdbc:mysql://caminho/nome_banco_de_dados
 db.user=seu_usuario
 db.password=sua_senha
 
@@ -78,5 +78,6 @@ A camada DAO suporta as seguintes operações de persistência:
 1. **Inserir (`salvar`)**: Persiste novos registros no banco de dados. No caso dos veículos, aplica a estratégia *Single Table Inheritance* tratando as especificidades de `Carro` e `Moto`.
 2. **Busca por ID (`buscarPorID`)**: Consulta e retorna uma entidade única com base na sua chave primária (`id`).
 3. **Busca Completa (`listarTodos`)**: Recupera todos os registros cadastrados, remontando objetos polimórficos de forma dinâmica na memória.
-4. **Excluir (`Deletar`)**: Remove do banco de dados o registro associado ao objeto informado.
+4. **Excluir (`deletar`)**: Remove do banco de dados o registro associado ao objeto informado.
+5. **Update (`update`)**: Atualiza os dados no banco de dados o registro associado ao objeto informado.
 
