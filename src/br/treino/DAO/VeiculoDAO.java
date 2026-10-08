@@ -130,7 +130,7 @@ public class VeiculoDAO extends DAO implements InterfaceDAO<Veiculo> {
 	}
 
 	@Override
-	public void Deletar(Veiculo v) {
+	public void deletar(Veiculo v) {
 		String sql = "DELETE FROM veiculos where id = ?";
 		try (Connection con = abrirBanco(); PreparedStatement prs = con.prepareStatement(sql)) {
 			prs.setInt(1, v.getId());

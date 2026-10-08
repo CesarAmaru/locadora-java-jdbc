@@ -71,7 +71,7 @@ public class ClienteDAO extends DAO implements InterfaceDAO<Cliente> {
 	}
 
 	@Override
-	public void Deletar(Cliente v) {
+	public void deletar(Cliente v) {
 		String sql = "DELETE FROM clientes where id = ? ";
 		try (Connection con = abrirBanco(); PreparedStatement prs = con.prepareStatement(sql);) {
 			prs.setInt(1, v.getId());

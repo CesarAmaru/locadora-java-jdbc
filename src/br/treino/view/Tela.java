@@ -29,7 +29,7 @@ public class Tela {
 		System.out.println("\n--- TESTANDO EXCLUSÃO E BUSCA POR ID ---");
 		Cliente clienteParaDeletar = clienteDAO.buscarPorID(1);
 		if (clienteParaDeletar != null) {
-			clienteDAO.Deletar(clienteParaDeletar);
+			clienteDAO.deletar(clienteParaDeletar);
 			System.out.println("Cliente " + clienteParaDeletar.getName() + " deletado com sucesso!");
 		}
 
