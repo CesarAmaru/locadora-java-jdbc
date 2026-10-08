@@ -1,12 +1,9 @@
 package br.treino.view;
 
 import java.util.List;
-
 import br.treino.DAO.ClienteDAO;
 import br.treino.DAO.VeiculoDAO;
-import br.treino.entities.Carro;
 import br.treino.entities.Cliente;
-import br.treino.entities.Moto;
 import br.treino.entities.Veiculo;
 
 public class Tela {

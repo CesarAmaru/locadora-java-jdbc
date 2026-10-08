@@ -1,13 +1,8 @@
 package br.treino.DAO;
+
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
-
-import br.treino.entities.Moto;
-import br.treino.entities.Veiculo;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
