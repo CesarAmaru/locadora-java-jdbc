@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.treino.DAO.entities.IClienteDAO;
+import br.treino.DAO.entities.InterfaceDAO;
 import br.treino.entities.Cliente;
 
-public class ClienteDAO extends DAO implements IClienteDAO {
+public class ClienteDAO extends DAO implements InterfaceDAO<Cliente> {
 
 	@Override
 	public void salvar(Cliente v) {
@@ -71,7 +71,7 @@ public class ClienteDAO extends DAO implements IClienteDAO {
 	}
 
 	@Override
-	public void Deletar(Cliente v) {
+	public void deletar(Cliente v) {
 		String sql = "DELETE FROM clientes where id = ? ";
 		try (Connection con = abrirBanco(); PreparedStatement prs = con.prepareStatement(sql);) {
 			prs.setInt(1, v.getId());
@@ -81,6 +81,23 @@ public class ClienteDAO extends DAO implements IClienteDAO {
 			System.err.printf("ERRO: Não foi possivel excluir cliente da tabela. %n%s%n", e.getMessage());
 		}
 
+	}
+
+	@Override
+	public void update(Cliente v) {
+		String sql = "UPDATE clientes SET nome = ?, cnh = ? WHERE id = ?";
+		try(Connection con = abrirBanco();
+			PreparedStatement prs = con.prepareStatement(sql);){
+			prs.setString(1, v.getName());
+			prs.setString(2, v.getCnh());
+			prs.setInt(3, v.getId());
+			
+			prs.executeUpdate();
+			System.out.println("Cliente atualizado com sucesso!");
+			
+		}catch (SQLException e) {
+			System.err.printf("ERRO: Não foi possivel atualizar cliente da tabela. %n%s%n", e.getMessage());
+		}
 	}
 
 }
