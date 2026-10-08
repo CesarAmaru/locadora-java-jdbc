@@ -3,17 +3,19 @@ package br.treino.DAO;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.treino.DAO.entities.IVeiculoDAO;
+import javax.naming.directory.InvalidAttributesException;
+
+import br.treino.DAO.entities.InterfaceDAO;
 import br.treino.entities.Veiculo;
 import br.treino.entities.Carro;
+import br.treino.entities.Cliente;
 import br.treino.entities.Moto;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class VeiculoDAO extends DAO implements IVeiculoDAO {
+public class VeiculoDAO extends DAO implements InterfaceDAO<Veiculo> {
 
 	@Override
 	public void salvar(Veiculo v) {
@@ -80,9 +82,8 @@ public class VeiculoDAO extends DAO implements IVeiculoDAO {
 						veic = tempCarro;
 
 					} else {
-						System.err.println("ERRO: tipo de veículo invalida.");
+						System.err.println("ERRO: classe invalida.");
 					}
-
 				}
 			}
 			System.out.println("Veículo encontrado!");
@@ -139,6 +140,37 @@ public class VeiculoDAO extends DAO implements IVeiculoDAO {
 			System.err.printf("ERRO: Não foi possivel excluir veiculo da tabela. %n%s%n", e.getMessage());
 		}
 
+	}
+
+	@Override
+	public void update(Veiculo v) {
+		
+		try (Connection con = abrirBanco();) {
+			if (v instanceof Carro carroTemp) {
+				String sql = "UPDATE veiculos SET valor_diaria_base = ?, quantidade_portas = ?, ar_condicionado = ? WHERE id = ?";
+				try (PreparedStatement prs = con.prepareStatement(sql);) {
+					prs.setDouble(1, carroTemp.getBaseDailyFee());
+					prs.setInt(2, carroTemp.getDoorQuantity());
+					prs.setBoolean(3, carroTemp.getAirConditioning());
+					prs.setInt(4, carroTemp.getId());
+					prs.executeUpdate();
+				}
+
+			} else if (v instanceof Moto motoTemp) {
+				String sql = "UPDATE veiculos SET valor_diaria_base = ?, cilindradas = ? WHERE id = ?";
+				try (PreparedStatement prs = con.prepareStatement(sql);) {
+					prs.setDouble(1, motoTemp.getBaseDailyFee());
+					prs.setInt(2, motoTemp.getCilindradas());
+					prs.setInt(3, motoTemp.getId());
+					prs.executeUpdate();
+				}
+			}else {
+				System.err.println("ERRO: classe invalida.");
+			}
+			System.out.println("Veículo atualizado com sucesso!");
+		} catch (SQLException e) {
+			System.err.printf("ERRO: Não foi possivel atualizar veiculo da tabela. %n%s%n", e.getMessage());
+		}
 	}
 
 }
