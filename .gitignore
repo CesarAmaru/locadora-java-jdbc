@@ -5,3 +5,4 @@ bin/
 .project
 config.properties
 lib/*.jar
+Tela.java
