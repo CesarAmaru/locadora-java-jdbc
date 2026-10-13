@@ -2,8 +2,9 @@ package br.treino.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
-import br.treino.DAO.entities.InterfaceDAO;
+
 import br.treino.entities.Veiculo;
+import br.treino.DAO.interfaces.InterfaceDAO;
 import br.treino.entities.Carro;
 import br.treino.entities.Moto;
 import java.sql.Connection;

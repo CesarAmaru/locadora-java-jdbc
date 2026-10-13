@@ -1,8 +1,7 @@
-package br.treino.DAO.entities;
+package br.treino.DAO.interfaces;
 
 import java.util.List;
 
-import br.treino.entities.Cliente;
 
 public interface InterfaceDAO<T> {
 	public void salvar(T v);
