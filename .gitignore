@@ -5,4 +5,4 @@ bin/
 .project
 config.properties
 lib/*.jar
-Tela.java
+src/br/treino/view/Tela.java
