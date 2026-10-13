@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.treino.DAO.entities.InterfaceDAO;
+import br.treino.DAO.interfaces.InterfaceDAO;
 import br.treino.entities.Cliente;
 
 public class ClienteDAO extends DAO implements InterfaceDAO<Cliente> {
